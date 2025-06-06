@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHYSX - Ứng dụng học Vật lý thông minh</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PHYSX - Ứng dụng học Vật lý thông minh</title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -53,7 +54,7 @@
         .title-main {
             font-size: 3rem;
             font-weight: bold;
-            color: #22c55e;
+            color: #14b78c;
             margin-bottom: 20px;
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -62,7 +63,7 @@
         .brand-name {
             font-size: 5rem;
             font-weight: 900;
-            color: #16a34a;
+            color: #043C2D;
             margin-bottom: 30px;
             letter-spacing: -2px;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
@@ -70,13 +71,13 @@
 
         .subtitle {
             font-size: 1.8rem;
-            color: #059669;
+            color: #043C2D;
             margin-bottom: 40px;
             font-weight: 500;
         }
 
         .download-btn {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             color: white;
             padding: 20px 50px;
             border: none;
@@ -119,13 +120,13 @@
             gap: 15px;
             margin-bottom: 20px;
             font-size: 1.2rem;
-            color: #059669;
+            color: #043C2D;
         }
 
         .contact-icon {
             width: 40px;
             height: 40px;
-            background: #22c55e;
+            background: #14b78c;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -145,6 +146,10 @@
             position: relative;
             width: 500px;
             height: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .phone {
@@ -189,7 +194,7 @@
             right: -50px;
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            background: linear-gradient(135deg, #FCD93D, #FCD93D);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -220,10 +225,12 @@
         }
 
         .features-grid {
-            position: absolute;
-            bottom: -35px;
-            right: -100px;
+            position: relative;
+            margin-top: 30px;
             display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            justify-content: center;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             z-index: 5;
@@ -235,7 +242,7 @@
             border-radius: 15px;
             text-align: center;
             font-size: 0.8rem;
-            color: #059669;
+            color: #043C2D;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(34, 197, 94, 0.2);
             animation: pulse 2s infinite;
@@ -279,7 +286,7 @@
             text-align: center;
             font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #16a34a, #22c55e);
+            background: linear-gradient(135deg, #043C2D, #14b78c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -295,7 +302,7 @@
             transform: translateX(-50%);
             width: 120px;
             height: 6px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             border-radius: 3px;
         }
 
@@ -344,7 +351,7 @@
         .mission-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             border-radius: 30px;
             display: flex;
             align-items: center;
@@ -361,16 +368,16 @@
         }
 
         .mission-card h3 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            color: #16a34a;
+            color: #043C2D;
             margin-bottom: 25px;
             letter-spacing: -0.5px;
         }
 
         .mission-card p {
-            font-size: 1.3rem;
-            color: #047857;
+            font-size: 1.1rem;
+            color: #043C2D;
             line-height: 1.8;
             font-weight: 400;
         }
@@ -384,7 +391,7 @@
             text-align: center;
             font-size: 2.8rem;
             font-weight: 800;
-            color: #16a34a;
+            color: #043C2D;
             margin-bottom: 60px;
             position: relative;
         }
@@ -429,7 +436,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
@@ -447,7 +454,7 @@
         .value-number {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -461,20 +468,20 @@
 
         .value-item h4 {
             font-size: 1.4rem;
-            color: #16a34a;
+            color: #043C2D;
             font-weight: 700;
             margin-bottom: 20px;
         }
 
         .value-item p {
-            color: #047857;
+            color: #043C2D;
             font-size: 1.1rem;
             line-height: 1.7;
         }
 
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+            background: linear-gradient(135deg, #043C2D 0%, #043C2D 50%, #043C2D 100%);
             color: white;
             padding: 80px 0 40px;
             position: relative;
@@ -512,7 +519,7 @@
         .footer-brand .footer-logo {
             font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #22c55e, #10b981);
+            background: linear-gradient(135deg, #14b78c, #14b78c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -548,7 +555,7 @@
         }
 
         .social-link:hover {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             transform: translateY(-5px) scale(1.1);
             box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
             color: white;
@@ -557,7 +564,7 @@
         .footer-section h4 {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #22c55e;
+            color: #14b78c;
             margin-bottom: 30px;
             position: relative;
         }
@@ -569,7 +576,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, #14b78c, #043C2D);
             border-radius: 2px;
         }
 
@@ -593,7 +600,7 @@
         }
 
         .footer-links a:hover {
-            color: #22c55e;
+            color: #14b78c;
             transform: translateX(8px);
             font-weight: 500;
         }
@@ -688,159 +695,298 @@
                 padding: 60px 0 30px;
             }
         }
-    </style>
+    
+.features-grid-fixed {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 1001;
+}
+.features-grid-fixed .feature-card {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #043C2D;
+    border: 2px solid #14b78c;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.features-grid-fixed .feature-card:hover {
+    transform: translateY(-4px);
+    background: #f0fdf4;
+}
+
+
+/* Custom overrides to make the mission cards smaller */
+.mission-card {
+    padding: 25px;
+}
+
+.mission-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+}
+
+.mission-card h3 {
+    font-size: 1.4rem;
+}
+
+.mission-card p {
+    font-size: 0.95rem;
+}
+
+
+.mission-card {
+    text-align: center;
+}
+
+.mission-icon {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-card h3 {
+    text-align: center;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="left-content">
-            <h1 class="title-main">ỨNG DỤNG HỌC VẬT LÝ<br>THÔNG MINH</h1>
-            <div class="brand-name">PHYSX</div>
-            <p class="subtitle">Biến việc học vật lý trở nên dễ dàng</p>
-            
-            <a href="#" class="download-btn">
-                DOWNLOAD NOW
-                <span class="download-arrow">⬇</span>
-            </a>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📞</div>
-                    <span>0902428152</span>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🌐</div>
-                    <span>PhysX@gmail.com</span>
-                </div>
-            </div>
+<nav style="background: linear-gradient(135deg, #043C2D, #14b78c); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000;">
+<div style="font-size: 2rem; font-weight: bold; color: white;">PHYSX</div>
+<ul style="list-style: none; display: flex; gap: 30px; margin: 0;">
+<li><a href="#gioithieu" style="color: white; font-size: 1.2rem; text-decoration: none;">Giới thiệu</a></li>
+<li><a href="#khoahoc" style="color: white; font-size: 1.2rem; text-decoration: none;">Khoá học</a></li>
+<li><a href="#lienhe" style="color: white; font-size: 1.2rem; text-decoration: none;">Liên hệ</a></li>
+</ul>
+</nav>
+
+<!-- Hero Section (new UI with better alignment) -->
+<div style="background-color: #004225; padding: 60px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px;">
+  <div style="flex: 1; min-width: 300px; color: white;">
+    <h1 style="font-size: 5rem; font-weight: 900; margin-bottom: 20px; color: #ffffff;">PHYSX</h1>
+<p style="font-size: 2rem; margin-bottom: 15px; line-height: 1.5;">
+  Ứng dụng học vật lý thông minh
+</p>
+<p style="font-size: 2rem; margin-bottom: 30px; line-height: 1.5; font-weight: 600;">
+  <span style="color: #facc15;">kết hợp trí tuệ nhân tạo</span> biến việc học trở nên dễ dàng.
+</p>
+
+
+    <a href="#" style="background: linear-gradient(135deg, #16a34a, #059669); padding: 16px 40px; border-radius: 40px; color: white; font-weight: bold; font-size: 1.3rem; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.2); display: inline-flex; align-items: center; gap: 10px;">
+      DOWNLOAD NOW ⬇
+    </a>
+  </div>
+  <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
+    <img src="anh dau tien.jpg" alt="App Screens" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);"/>
+  </div>
+</div>
+
+
+<div class="atom-icon">
+<svg fill="none" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="#14b78c" r="3"></circle>
+<ellipse cx="50" cy="50" fill="none" rx="25" ry="8" stroke="#14b78c" stroke-width="2"></ellipse>
+<ellipse cx="50" cy="50" fill="none" rx="25" ry="8" stroke="#14b78c" stroke-width="2" transform="rotate(60 50 50)"></ellipse>
+<ellipse cx="50" cy="50" fill="none" rx="25" ry="8" stroke="#14b78c" stroke-width="2" transform="rotate(-60 50 50)"></ellipse>
+<circle cx="75" cy="50" fill="#FCD93D" r="2"></circle>
+<circle cx="25" cy="50" fill="#FCD93D" r="2"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
+<section style="background: #ecfdf5; padding: 80px 20px; text-align: center;">
+  <h2 style="font-size: 3rem; color: #043C2D; margin-bottom: 60px; font-weight: bold;">TÍNH NĂNG NỔI BẬT</h2>
+  <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 60px; max-width: 1200px; margin: auto;">
+
+    <!-- Cột trái: Icon gần ảnh, text bên trái -->
+    <div style="display: flex; flex-direction: column; gap: 60px; align-items: flex-end;">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="text-align: right;">
+          <h4 style="margin: 0; color: #043C2D; font-size: 1.4rem;">LỘ TRÌNH HỌC<br/>CÁ NHÂN HÓA</h4>
         </div>
-        
-        <div class="right-content">
-            <div class="phones-container">
-                <div class="phone phone-1">
-                    <img src="/image2.jpg" alt="PHYSX Chinh phục Vật lý">
-                </div>
-                
-                <div class="phone phone-2">
-                    <img src="/image3.jpg" alt="PHYSX Menu chính">
-                </div>
-                
-                <div class="character">🧑‍🔬</div>
-                
-                <div class="atom-icon">
-                    <svg viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="3" fill="#22c55e"/>
-                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none"/>
-                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none" transform="rotate(60 50 50)"/>
-                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none" transform="rotate(-60 50 50)"/>
-                        <circle cx="75" cy="50" r="2" fill="#f59e0b"/>
-                        <circle cx="25" cy="50" r="2" fill="#f59e0b"/>
-                    </svg>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div style="font-size: 1.5rem; margin-bottom: 5px;">🏠</div>
-                        <div>Trang chủ</div>
-                    </div>
-                    <div class="feature-card">
-                        <div style="font-size: 1.5rem; margin-bottom: 5px;">📱</div>
-                        <div>Ứng dụng</div>
-                    </div>
-                </div>
-            </div>
+        <div style="font-size: 2.5rem;">📱</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="text-align: right;">
+          <h4 style="margin: 0; color: #043C2D; font-size: 1.4rem;">PHẢN HỒI<br/>TỨC THÌ</h4>
         </div>
+        <div style="font-size: 2.5rem;">📱</div>
+      </div>
     </div>
 
-    <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="mission-container">
-            <h2 class="section-title">SỨ MỆNH & TẦM NHÌN</h2>
-            
-            <div class="mission-grid">
-                <div class="mission-card">
-                    <div class="mission-icon">🎯</div>
-                    <h3>TẦM NHÌN</h3>
-                    <p>Trở thành nền tảng học Vật lý cá nhân hóa hàng đầu Việt Nam, giúp mỗi người học khai phá tiềm năng tư duy khoa học thông qua công nghệ thông minh, trực quan và đồng sáng tạo.</p>
-                </div>
-                
-                <div class="mission-card">
-                    <div class="mission-icon">🚀</div>
-                    <h3>SỨ MỆNH</h3>
-                    <p>PhysX cam kết mang đến trải nghiệm học Vật lý sinh động, hiệu quả và phù hợp với từng cá nhân bằng cách kết hợp trí tuệ nhân tạo, mô phỏng trực quan và cộng đồng học tập hợp tác.</p>
-                </div>
-            </div>
-            
-            <div class="values-section">
-                <h3 class="values-title">GIÁ TRỊ CỐT LÕI PHYSX</h3>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <div class="value-number">1</div>
-                        <h4>Nâng cao hiệu quả học tập</h4>
-                        <p>Tối ưu hóa quá trình học tập với phương pháp thông minh và cá nhân hóa để đạt kết quả tốt nhất</p>
-                    </div>
-                    
-                    <div class="value-item">
-                        <div class="value-number">2</div>
-                        <h4>Kiến thức có hệ thống</h4>
-                        <p>Xây dựng nền tảng kiến thức vững chắc theo cấu trúc logic và khoa học, dễ hiểu dễ nhớ</p>
-                    </div>
-                    
-                    <div class="value-item">
-                        <div class="value-number">3</div>
-                        <h4>Tiết kiệm thời gian học</h4>
-                        <p>Học hiệu quả hơn với thời gian ngắn hơn thông qua công nghệ AI và phương pháp tối ưu</p>
-                    </div>
-                    
-                    <div class="value-item">
-                        <div class="value-number">4</div>
-                        <h4>Phát triển tư duy logic</h4>
-                        <p>Rèn luyện khả năng tư duy phản biện và giải quyết vấn đề một cách khoa học, sáng tạo</p>
-                    </div>
-                    
-                    <div class="value-item">
-                        <div class="value-number">5</div>
-                        <h4>Tạo động lực học tập</h4>
-                        <p>Khơi gợi đam mê học tập qua trải nghiệm thú vị, tương tác sinh động và thành tựu rõ ràng</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Ảnh ở giữa -->
+    <div>
+      <img src="tinh-nang-noi-bat-crop.png.jpg" alt="Tính năng nổi bật" style="max-width: 480px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);" />
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">PHYSX</div>
-                    <p class="footer-description">
+    <!-- Cột phải: Icon gần ảnh, text bên phải -->
+    <div style="display: flex; flex-direction: column; gap: 60px; align-items: flex-start;">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="font-size: 2.5rem;">📱</div>
+        <div style="text-align: left;">
+          <h4 style="margin: 0; color: #043C2D; font-size: 1.4rem;">TRỢ LÝ<br/>CÁ NHÂN</h4>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="font-size: 2.5rem;">📱</div>
+        <div style="text-align: left;">
+          <h4 style="margin: 0; color: #043C2D; font-size: 1.4rem;">BÀI GIẢNG SINH ĐỘNG,<br/>DỄ HIỂU</h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="values-section">
+<h3 class="values-title">GIẢ PHÁP GIÁ TRỊ</h3>
+<div class="values-grid">
+<div class="value-item">
+<div class="value-number">1</div>
+<h4>Nâng cao hiệu quả học tập</h4>
+<p>Tối ưu hóa quá trình học tập với phương pháp thông minh và cá nhân hóa để đạt kết quả tốt nhất</p>
+</div>
+<div class="value-item">
+<div class="value-number">2</div>
+<h4>Kiến thức có hệ thống</h4>
+<p>Xây dựng nền tảng kiến thức vững chắc theo cấu trúc logic và khoa học, dễ hiểu dễ nhớ</p>
+</div>
+<div class="value-item">
+<div class="value-number">3</div>
+<h4>Tiết kiệm thời gian học</h4>
+<p>Học hiệu quả hơn với thời gian ngắn hơn thông qua công nghệ AI và phương pháp tối ưu</p>
+</div>
+<div class="value-item">
+<div class="value-number">4</div>
+<h4>Phát triển tư duy logic</h4>
+<p>Rèn luyện khả năng tư duy phản biện và giải quyết vấn đề một cách khoa học, sáng tạo</p>
+</div>
+<div class="value-item">
+<div class="value-number">5</div>
+<h4>Tạo động lực học tập</h4>
+<p>Khơi gợi đam mê học tập qua trải nghiệm thú vị, tương tác sinh động và thành tựu rõ ràng</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section style="background: #f0fdf4; padding: 100px 20px; text-align: center;">
+  <h2 style="font-size: 3rem; color: #043C2D; margin-bottom: 60px;">Đội ngũ nhân sự</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+    <div style="width: 240px; background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+      <img src="bui-thi-thuy-duyen.jpg" alt="Bùi Thị Thuỷ Duyên" style="width: 100%; height: auto; border-radius: 15px; margin-bottom: 15px;"/>
+      <h4 style="color: #043C2D; font-size: 1.2rem;">Bùi Thị Thuỷ Duyên</h4>
+    </div>
+    <div style="width: 240px; background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+      <img src="tran-tuyet-nhi.jpg" alt="Trần Tuyết Nhi" style="width: 100%; height: auto; border-radius: 15px; margin-bottom: 15px;"/>
+      <h4 style="color: #043C2D; font-size: 1.2rem;">Trần Tuyết Nhi</h4>
+    </div>
+    <div style="width: 240px; background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+      <img src="le-thi-hong-phuc.jpg" alt="Lê Thị Hồng Phúc" style="width: 100%; height: auto; border-radius: 15px; margin-bottom: 15px;"/>
+      <h4 style="color: #043C2D; font-size: 1.2rem;">Lê Thị Hồng Phúc</h4>
+    </div>
+    <div style="width: 240px; background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+      <img src="nguyen-thi-trang.jpg" alt="Nguyễn Thị Trang" style="width: 100%; height: auto; border-radius: 15px; margin-bottom: 15px;"/>
+      <h4 style="color: #043C2D; font-size: 1.2rem;">Nguyễn Thị Trang</h4>
+    </div>
+  </div>
+</section>
+
+</section>
+
+<div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+<h2 style="font-size: 3rem; color: #043C2D; margin-bottom: 40px;">Khoá học nổi bật</h2>
+<p style="font-size: 1.4rem; color: #043C2D;">PhysX cung cấp các khoá học Vật lý từ cơ bản đến nâng cao, tích hợp AI và mô phỏng trực quan, giúp bạn học hiệu quả và thú vị hơn.</p>
+</div>
+<div style="margin-top: 60px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+<div style="background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(21,128,61,0.15); width: 300px; text-align: center; border: 2px solid #3b8f76;">
+<h3 style="font-size: 1.6rem; color: #043C2D; margin-bottom: 15px;">Gói theo học kỳ</h3>
+<p style="font-size: 1.2rem; color: #043C2D;">Dành cho học sinh học 1 học kỳ</p>
+<ul style="text-align: left; font-size: 1rem; color: #043C2D; margin: 15px 0 10px 0; padding-left: 20px;">
+<li>🔍 Cá nhân hoá lộ trình</li>
+<li>📈 Theo dõi tiến độ</li>
+<li>🎮 Gamification nâng cao</li>
+</ul>
+<div style="font-size: 2rem; color: #043C2D; font-weight: bold; margin: 20px 0;">499.000 VNĐ</div>
+<button style="background: linear-gradient(135deg, #043C2D, #043C2D); color: white; padding: 10px 25px; border-radius: 50px; border: none; font-size: 1rem; cursor: pointer;">Đăng ký</button>
+</div>
+<div style="background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(21,128,61,0.15); width: 300px; text-align: center; border: 2px solid #3b8f76;">
+<h3 style="font-size: 1.6rem; color: #043C2D; margin-bottom: 15px;">Gói 1 năm học</h3>
+<p style="font-size: 1.2rem; color: #043C2D;">Học trọn vẹn 1 năm Vật lý</p>
+<ul style="text-align: left; font-size: 1rem; color: #043C2D; margin: 15px 0 10px 0; padding-left: 20px;">
+<li>🔍 Cá nhân hoá lộ trình</li>
+<li>📈 Theo dõi tiến độ</li>
+<li>🎮 Gamification nâng cao</li>
+</ul>
+<div style="font-size: 2rem; color: #043C2D; font-weight: bold; margin: 20px 0;">899.000 VNĐ</div>
+<button style="background: linear-gradient(135deg, #043C2D, #043C2D); color: white; padding: 10px 25px; border-radius: 50px; border: none; font-size: 1rem; cursor: pointer;">Đăng ký</button>
+</div>
+<div style="background: white; padding: 30px 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(21,128,61,0.15); width: 300px; text-align: center; border: 2px solid #3b8f76;">
+<h3 style="font-size: 1.6rem; color: #043C2D; margin-bottom: 15px;">Gói theo chuyên đề</h3>
+<p style="font-size: 1.2rem; color: #043C2D;">Học từng chuyên đề riêng biệt</p>
+<ul style="text-align: left; font-size: 1rem; color: #043C2D; margin: 15px 0 10px 0; padding-left: 20px;">
+<li>🔍 Cá nhân hoá lộ trình</li>
+<li>📈 Theo dõi tiến độ</li>
+<li>🎮 Gamification nâng cao</li>
+</ul>
+<div style="font-size: 2rem; color: #043C2D; font-weight: bold; margin: 20px 0;">119.000 VNĐ</div>
+<button style="background: linear-gradient(135deg, #043C2D, #043C2D); color: white; padding: 10px 25px; border-radius: 50px; border: none; font-size: 1rem; cursor: pointer;">Đăng ký</button>
+</div>
+</div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer" id="lienhe">
+<div class="footer-container">
+<div class="footer-content">
+<div class="footer-brand">
+<div class="footer-logo">PHYSX</div>
+<p class="footer-description">
                         Ứng dụng học Vật lý thông minh hàng đầu Việt Nam. 
                         Biến việc học vật lý trở nên dễ dàng, thú vị và hiệu quả 
                         thông qua công nghệ AI và mô phỏng trực quan 3D.
                     </p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">🌐</a>
-                        <a href="#" class="social-link">📧</a>
-                        <a href="#" class="social-link">📞</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Tính năng</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">🎯 Học cá nhân hóa</a></li>
-                        <li><a href="#">🧪 Thí nghiệm ảo</a></li>
-                        <li><a href="#">📊 Theo dõi tiến độ</a></li>
-                        <li><a href="#">🎮 Gamification</a></li>
-                        <li><a href="#">👥 Cộng đồng học tập</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Liên hệ & Hỗ trợ</h4>
-                    <ul class="footer-links">
-                        <li><a href="tel:0902428152">📞 0902428152</a></li>
-                        <li><a href="mailto:PhysX@gmail.com">📧 PhysX@gmail.com</a></li>
-                        <li><a href="#">💬 Chat hỗ trợ 24/7</a></li>
-                        <li><a href="#">❓ Câu hỏi
+<div class="footer-social">
+<a class="social-link" href="#">📱</a>
+<a class="social-link" href="#">🌐</a>
+<a class="social-link" href="#">📧</a>
+<a class="social-link" href="#">📞</a>
+</div>
+</div>
+<div class="footer-section">
+<h4>Tính năng</h4>
+<ul class="footer-links">
+<li><a href="#">🎯 Học cá nhân hóa</a></li>
+<li><a href="#">🧪 Thí nghiệm ảo</a></li>
+<li><a href="#">📊 Theo dõi tiến độ</a></li>
+<li><a href="#">🎮 Gamification</a></li>
+<li><a href="#">👥 Cộng đồng học tập</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4>Liên hệ &amp; Hỗ trợ</h4>
+<ul class="footer-links">
+<li><a href="tel:0902428152">📞 0902428152</a></li>
+<li><a href="mailto:PhysX@gmail.com">📧 PhysX@gmail.com</a></li>
+<li><a href="#">💬 Chat hỗ trợ 24/7</a></li>
+<li><a href="#">❓ Câu hỏi</a></li></ul></div></div></div></footer>
+<div class="features-grid-fixed">
+<div class="feature-card">
+<div style="font-size: 1.5rem; margin-bottom: 5px;">🏠</div>
+<div>Trang chủ</div>
+</div>
+<div class="feature-card">
+<div style="font-size: 1.5rem; margin-bottom: 5px;">📱</div>
+<div>Ứng dụng</div>
+</div>
+</div>
+</body></html>
