@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYSX - Ứng dụng học Vật lý thông minh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #c3e9c3 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Dots pattern background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: radial-gradient(circle, #4ade80 2px, transparent 2px);
+            background-size: 25px 25px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-content {
+            padding-left: 40px;
+        }
+
+        .title-main {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #22c55e;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .brand-name {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #16a34a;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #059669;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.6);
+        }
+
+        .download-arrow {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #059669;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #22c55e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .right-content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phones-container {
+            position: relative;
+            width: 500px;
+            height: 600px;
+        }
+
+        .phone {
+            position: absolute;
+            width: 250px;
+            height: auto;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 20px 60px rgba(0,0,0,0.3));
+        }
+
+        .phone:hover {
+            transform: scale(1.05);
+        }
+
+        .phone-1 {
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .phone-2 {
+            top: 50px;
+            right: 0;
+            z-index: 2;
+        }
+
+        .phone-3 {
+            top: 100px;
+            left: 100px;
+            z-index: 1;
+        }
+
+        .phone img {
+            width: 100%;
+            height: auto;
+            border-radius: 35px;
+        }
+
+        .character {
+            position: absolute;
+            top: 20%;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+            z-index: 4;
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .atom-icon {
+            position: absolute;
+            top: 10%;
+            right: 20%;
+            width: 60px;
+            height: 60px;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .features-grid {
+            position: absolute;
+            bottom: -35px;
+            right: -100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #059669;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(34, 197, 94, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            opacity: 0.7;
+        }
+
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 6px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 3px;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 
+                0 25px 80px rgba(34, 197, 94, 0.15),
+                0 0 0 1px rgba(34, 197, 94, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .mission-card:hover::before {
+            left: 100%;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 40px 120px rgba(34, 197, 94, 0.25),
+                0 0 0 1px rgba(34, 197, 94, 0.2);
+        }
+
+        .mission-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            animation: gentle-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4); }
+        }
+
+        .mission-card h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #16a34a;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .mission-card p {
+            font-size: 1.3rem;
+            color: #047857;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-top: 80px;
+        }
+
+        .values-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #16a34a;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .values-title::before {
+            content: '✨';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -50px;
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .value-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .value-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .value-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0 auto 25px;
+            position: relative;
+        }
+
+        .value-item h4 {
+            font-size: 1.4rem;
+            color: #16a34a;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .value-item p {
+            color: #047857;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+            color: white;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            opacity: 0.5;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #22c55e, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+        }
+
+        .footer-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #a7f3d0;
+            margin-bottom: 40px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(34, 197, 94, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            text-decoration: none;
+            color: #a7f3d0;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(34, 197, 94, 0.4);
+            color: white;
+        }
+
+        .footer-section h4 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #a7f3d0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .footer-links a:hover {
+            color: #22c55e;
+            transform: translateX(8px);
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 2px solid rgba(34, 197, 94, 0.3);
+            padding-top: 40px;
+            text-align: center;
+            color: #a7f3d0;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom .heart {
+            color: #ef4444;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .title-main { font-size: 2.5rem; }
+            .brand-name { font-size: 3.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .left-content { padding-left: 0; }
+            
+            .phones-container {
+                width: 400px;
+                height: 500px;
+            }
+            
+            .phone {
+                width: 200px;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 2rem; }
+            .brand-name { font-size: 2.8rem; }
+            .subtitle { font-size: 1.2rem; }
+            
+            .phones-container {
+                width: 300px;
+                height: 400px;
+            }
+            
+            .phone {
+                width: 160px;
+            }
+            
+            .mission-section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .mission-card {
+                padding: 30px;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer {
+                padding: 60px 0 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-content">
+            <h1 class="title-main">ỨNG DỤNG HỌC VẬT LÝ<br>THÔNG MINH</h1>
+            <div class="brand-name">PHYSX</div>
+            <p class="subtitle">Biến việc học vật lý trở nên dễ dàng</p>
+            
+            <a href="#" class="download-btn">
+                DOWNLOAD NOW
+                <span class="download-arrow">⬇</span>
+            </a>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <span>0902428152</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <span>PhysX@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-content">
+            <div class="phones-container">
+                <div class="phone phone-1">
+                    <img src="image2.jpg" alt="PHYSX Chinh phục Vật lý">
+                </div>
+                
+                <div class="phone phone-2">
+                    <img src="image3.jpg" alt="PHYSX Menu chính">
+                </div>
+                
+                <div class="character">🧑‍🔬</div>
+                
+                <div class="atom-icon">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="3" fill="#22c55e"/>
+                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none"/>
+                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none" transform="rotate(60 50 50)"/>
+                        <ellipse cx="50" cy="50" rx="25" ry="8" stroke="#22c55e" stroke-width="2" fill="none" transform="rotate(-60 50 50)"/>
+                        <circle cx="75" cy="50" r="2" fill="#f59e0b"/>
+                        <circle cx="25" cy="50" r="2" fill="#f59e0b"/>
+                    </svg>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">🏠</div>
+                        <div>Trang chủ</div>
+                    </div>
+                    <div class="feature-card">
+                        <div style="font-size: 1.5rem; margin-bottom: 5px;">📱</div>
+                        <div>Ứng dụng</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-container">
+            <h2 class="section-title">SỨ MỆNH & TẦM NHÌN</h2>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🎯</div>
+                    <h3>TẦM NHÌN</h3>
+                    <p>Trở thành nền tảng học Vật lý cá nhân hóa hàng đầu Việt Nam, giúp mỗi người học khai phá tiềm năng tư duy khoa học thông qua công nghệ thông minh, trực quan và đồng sáng tạo.</p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">🚀</div>
+                    <h3>SỨ MỆNH</h3>
+                    <p>PhysX cam kết mang đến trải nghiệm học Vật lý sinh động, hiệu quả và phù hợp với từng cá nhân bằng cách kết hợp trí tuệ nhân tạo, mô phỏng trực quan và cộng đồng học tập hợp tác.</p>
+                </div>
+            </div>
+            
+            <div class="values-section">
+                <h3 class="values-title">GIÁ TRỊ CỐT LÕI PHYSX</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-number">1</div>
+                        <h4>Nâng cao hiệu quả học tập</h4>
+                        <p>Tối ưu hóa quá trình học tập với phương pháp thông minh và cá nhân hóa để đạt kết quả tốt nhất</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-number">2</div>
+                        <h4>Kiến thức có hệ thống</h4>
+                        <p>Xây dựng nền tảng kiến thức vững chắc theo cấu trúc logic và khoa học, dễ hiểu dễ nhớ</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-number">3</div>
+                        <h4>Tiết kiệm thời gian học</h4>
+                        <p>Học hiệu quả hơn với thời gian ngắn hơn thông qua công nghệ AI và phương pháp tối ưu</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-number">4</div>
+                        <h4>Phát triển tư duy logic</h4>
+                        <p>Rèn luyện khả năng tư duy phản biện và giải quyết vấn đề một cách khoa học, sáng tạo</p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-number">5</div>
+                        <h4>Tạo động lực học tập</h4>
+                        <p>Khơi gợi đam mê học tập qua trải nghiệm thú vị, tương tác sinh động và thành tựu rõ ràng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">PHYSX</div>
+                    <p class="footer-description">
+                        Ứng dụng học Vật lý thông minh hàng đầu Việt Nam. 
+                        Biến việc học vật lý trở nên dễ dàng, thú vị và hiệu quả 
+                        thông qua công nghệ AI và mô phỏng trực quan 3D.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">📱</a>
+                        <a href="#" class="social-link">🌐</a>
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">📞</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tính năng</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">🎯 Học cá nhân hóa</a></li>
+                        <li><a href="#">🧪 Thí nghiệm ảo</a></li>
+                        <li><a href="#">📊 Theo dõi tiến độ</a></li>
+                        <li><a href="#">🎮 Gamification</a></li>
+                        <li><a href="#">👥 Cộng đồng học tập</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ & Hỗ trợ</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:0902428152">📞 0902428152</a></li>
+                        <li><a href="mailto:PhysX@gmail.com">📧 PhysX@gmail.com</a></li>
+                        <li><a href="#">💬 Chat hỗ trợ 24/7</a></li>
+                        <li><a href="#">❓ Câu hỏi
